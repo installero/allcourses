@@ -1,24 +1,17 @@
-# README
+# Steps
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* rails new allcourses -T --skip-spring --skip-turbolinks
+* pushed to bitbucket
+* added bootstrap 4: https://github.com/twbs/bootstrap-rubygem
+* added rspec: https://github.com/rspec/rspec-rails
+* added guard: https://github.com/guard/guard https://github.com/guard/guard-rspec
+* Provider + Course models added
 
-Things you may want to cover:
+TBD
+* set up Postgres local db
+* Add devise User
+* Add Review
+* Setup basic tests for models
+* Implement key model functions
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Views and controllers...
