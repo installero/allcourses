@@ -5,12 +5,13 @@ class CreateCourses < ActiveRecord::Migration[5.1]
       t.string :url, null: false
       t.string :title, null: false
       t.text :description
-      t.integer :genre, null: false
+      t.integer :genre, null: false, default: 0
       t.float :rating, null: false, default: 0
       t.integer :reviews_counter, null: false, default: 0
 
       t.timestamps
     end
     add_index :courses, :url, unique: true
+    add_index :courses, :genre
   end
 end

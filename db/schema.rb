@@ -20,11 +20,12 @@ ActiveRecord::Schema.define(version: 20171012111354) do
     t.string "url", null: false
     t.string "title", null: false
     t.text "description"
-    t.integer "genre", null: false
+    t.integer "genre", default: 0, null: false
     t.float "rating", default: 0.0, null: false
     t.integer "reviews_counter", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["genre"], name: "index_courses_on_genre"
     t.index ["provider_id"], name: "index_courses_on_provider_id"
     t.index ["url"], name: "index_courses_on_url", unique: true
   end

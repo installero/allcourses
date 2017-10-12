@@ -20,7 +20,7 @@
 * Add letter_opener
   
 * Provider validations & specs (+ shoulda matcher)
-
+* Course validations
 
 TBD
 * Add Review
@@ -28,3 +28,6 @@ TBD
 * Implement key model functions
 
 Views and controllers...
+  custom devise form messages:
+    https://github.com/plataformatec/devise/wiki/How-To:-Integrate-I18n-Flash-Messages-with-Devise-and-Bootstrap
+    кастомазация лэйаута и связанных вьюх, включая сгенеренные девайзовские
