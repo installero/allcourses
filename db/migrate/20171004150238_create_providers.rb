@@ -1,8 +1,8 @@
 class CreateProviders < ActiveRecord::Migration[5.1]
   def change
     create_table :providers do |t|
-      t.string :title
-      t.string :url
+      t.string :title, null: false
+      t.string :url, null: false
 
       t.timestamps
     end

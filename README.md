@@ -19,6 +19,7 @@
   rails g devise:views:bootstrapped (https://github.com/king601/devise-bootstrapped)
 * Add letter_opener
   
+* Provider validations & specs (+ shoulda matcher)
 
 
 TBD

@@ -17,22 +17,21 @@ ActiveRecord::Schema.define(version: 20171012111354) do
 
   create_table "courses", force: :cascade do |t|
     t.bigint "provider_id"
-    t.string "url"
-    t.string "title"
+    t.string "url", null: false
+    t.string "title", null: false
     t.text "description"
-    t.integer "genre"
-    t.float "rating"
-    t.integer "reviews_counter"
+    t.integer "genre", null: false
+    t.float "rating", default: 0.0, null: false
+    t.integer "reviews_counter", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider_id"], name: "index_courses_on_provider_id"
-    t.index ["title"], name: "index_courses_on_title", unique: true
     t.index ["url"], name: "index_courses_on_url", unique: true
   end
 
   create_table "providers", force: :cascade do |t|
-    t.string "title"
-    t.string "url"
+    t.string "title", null: false
+    t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["url"], name: "index_providers_on_url", unique: true
@@ -60,5 +59,5 @@ ActiveRecord::Schema.define(version: 20171012111354) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "courses", "providers"
+  add_foreign_key "courses", "providers", on_update: :cascade, on_delete: :restrict
 end

@@ -22,8 +22,8 @@ gem 'bootstrap', '~> 4.0.0.beta'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+group :test do
+  gem 'shoulda-matchers'
   gem 'rspec-rails', '~> 3.6'
 end
 
@@ -31,6 +31,7 @@ group :development do
   gem 'letter_opener'
   gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'guard-rspec', require: false
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
