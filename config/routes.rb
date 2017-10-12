@@ -1,3 +1,14 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # https://github.com/plataformatec/devise/wiki/How-To:-Disable-user-from-destroying-their-account
+  devise_for :users, skip: :registrations
+  devise_scope :user do
+    resource :registration,
+             only: [:new, :create, :edit, :update],
+             path: 'users',
+             path_names: { new: 'sign_up' },
+             controller: 'devise/registrations',
+             as: :user_registration
+  end
+
+  # root to: "home#index"
 end
