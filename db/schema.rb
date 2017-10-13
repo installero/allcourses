@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20171012111354) do
 
   create_table "providers", force: :cascade do |t|
     t.string "title", null: false
-    t.string "url", null: false
+    t.string "domain", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["url"], name: "index_providers_on_url", unique: true
+    t.index ["domain"], name: "index_providers_on_domain", unique: true
   end
 
   create_table "users", force: :cascade do |t|

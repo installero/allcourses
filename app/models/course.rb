@@ -34,6 +34,17 @@ class Course < ApplicationRecord
 
   validates :url, presence: true, uniqueness: true
   validate :url_allowed #UrlOperator
+
+  before_validation :create_provider, unless: :provider
+
+  private
+
+  def create_provider
+    # url at this point must be clean and good
+    domain = PublicSuffix.domain(host(url), ignore_private: true)
+    p = Provider.find_or_create_by(domain: domain)
+    self.provider = p if p.valid?
+  end
 end
 
 

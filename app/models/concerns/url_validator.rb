@@ -19,4 +19,8 @@ module UrlValidator
   rescue URI::InvalidURIError
     false
   end
+
+  def host(url)
+    URI.parse(url).host
+  end
 end

@@ -16,6 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta'
 
+gem 'public_suffix'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
@@ -23,6 +25,7 @@ gem 'bootstrap', '~> 4.0.0.beta'
 # gem 'capistrano-rails', group: :development
 
 group :test do
+  gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'rspec-rails', '~> 3.6'
 end
