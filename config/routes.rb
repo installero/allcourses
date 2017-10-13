@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   # https://github.com/plataformatec/devise/wiki/How-To:-Disable-user-from-destroying-their-account
   devise_for :users, skip: :registrations
   devise_scope :user do

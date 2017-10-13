@@ -24,7 +24,7 @@ gem 'public_suffix'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :test do
+group :test, :development do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'rspec-rails', '~> 3.6'

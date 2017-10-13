@@ -3,6 +3,8 @@ class Course < ApplicationRecord
 
   belongs_to :provider
 
+  has_many :reviews, dependent: :destroy
+
   # http://api.rubyonrails.org/v5.1/classes/ActiveRecord/Enum.html
   # Mostly based on Udemy classification:
   # Programming
@@ -31,11 +33,37 @@ class Course < ApplicationRecord
   validates :title, presence: true
   validates :genre, presence: true, numericality: true
   validates :description, presence: true, allow_blank: true
+  validates :rating, numericality: {greater_than_or_equal_to: 0.0, less_than_or_equal_to: 5.0}, allow_nil: true
 
   validates :url, presence: true, uniqueness: true
   validate :url_allowed #UrlOperator
 
   before_validation :create_provider, unless: :provider
+
+  # todo: add locking or change to periodic ratings recalc
+  # xxx not concurrent
+  def update_avg_rating(old_stars, new_stars)
+    sum = rating * ratings_count
+
+    if old_stars.nil?
+      Course.increment_counter(:ratings_count, id)
+      old_stars = 0
+    end
+
+    if new_stars.nil?
+      Course.decrement_counter(:ratings_count, id)
+      new_stars = 0
+    end
+
+    sum += new_stars - old_stars
+
+    self.rating = sum / ratings_count # dividing by new counter value
+    save
+  end
+
+  def remove_rating(stars)
+    update_avg_rating(stars, nil)
+  end
 
   private
 
@@ -46,7 +74,3 @@ class Course < ApplicationRecord
     self.provider = p if p.valid?
   end
 end
-
-
-# t.float :rating, null: false, default: 0
-# t.integer :reviews_counter, null: false, default: 0

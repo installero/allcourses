@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012111354) do
+ActiveRecord::Schema.define(version: 20171013191548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(version: 20171012111354) do
     t.text "description"
     t.integer "genre", default: 0, null: false
     t.float "rating", default: 0.0, null: false
-    t.integer "reviews_counter", default: 0, null: false
+    t.integer "reviews_count", default: 0, null: false
+    t.integer "ratings_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre"], name: "index_courses_on_genre"
@@ -36,6 +37,17 @@ ActiveRecord::Schema.define(version: 20171012111354) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["domain"], name: "index_providers_on_domain", unique: true
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.integer "rating"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_reviews_on_course_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,4 +73,6 @@ ActiveRecord::Schema.define(version: 20171012111354) do
   end
 
   add_foreign_key "courses", "providers", on_update: :cascade, on_delete: :restrict
+  add_foreign_key "reviews", "courses", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "reviews", "users", on_update: :cascade, on_delete: :restrict
 end

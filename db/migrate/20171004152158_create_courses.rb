@@ -7,7 +7,8 @@ class CreateCourses < ActiveRecord::Migration[5.1]
       t.text :description
       t.integer :genre, null: false, default: 0
       t.float :rating, null: false, default: 0
-      t.integer :reviews_counter, null: false, default: 0
+      t.integer :reviews_count, null: false, default: 0
+      t.integer :ratings_count, null: false, default: 0
 
       t.timestamps
     end

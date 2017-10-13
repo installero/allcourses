@@ -21,11 +21,10 @@
   
 * Provider validations & specs (+ shoulda matcher)
 * Course validations
+* Add Review model
+
 
 TBD
-* Add Review
-* Setup basic tests for models
-* Implement key model functions
 
 Views and controllers...
   custom devise form messages:
