@@ -20,6 +20,6 @@ class Review < ApplicationRecord
   end
 
   def remove_course_rating
-    course.remove_rating(rating)
+    course.update_avg_rating(rating, nil)
   end
 end

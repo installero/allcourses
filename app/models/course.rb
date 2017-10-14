@@ -40,29 +40,12 @@ class Course < ApplicationRecord
 
   before_validation :create_provider, unless: :provider
 
-  # todo: add locking or change to periodic ratings recalc
-  # xxx not concurrent
   def update_avg_rating(old_stars, new_stars)
-    sum = rating * ratings_count
+    Course.increment_counter(:ratings_count, id) if old_stars.nil?
+    Course.decrement_counter(:ratings_count, id) if new_stars.nil?
 
-    if old_stars.nil?
-      Course.increment_counter(:ratings_count, id)
-      old_stars = 0
-    end
-
-    if new_stars.nil?
-      Course.decrement_counter(:ratings_count, id)
-      new_stars = 0
-    end
-
-    sum += new_stars - old_stars
-
-    self.rating = sum / ratings_count # dividing by new counter value
+    self.rating = reviews.average(:rating).to_f.round(1)
     save
-  end
-
-  def remove_rating(stars)
-    update_avg_rating(stars, nil)
   end
 
   private

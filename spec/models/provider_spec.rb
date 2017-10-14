@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Provider, type: :model do
-  context 'with simple creation' do
+  describe '.create' do
     # domain main checks
     it {should_not allow_value('/lsl-sdf-sfdf/').for(:domain)}
     it {should_not allow_value('/udemy.com/').for(:domain)}

@@ -1,8 +1,108 @@
 require 'rails_helper'
 
-# TODO: test counters and rating updates callbacks (new, update-plus-minus-equal, destroy)
 RSpec.describe Review, type: :model do
-  context 'with simple creation' do
+  let(:user) {FactoryGirl.create(:user)}
+  let(:course) {FactoryGirl.create(:course)}
+
+  describe '.update_course_rating' do
+    context 'with new review' do
+      it 'increases reviews_count' do
+        expect {
+          course.reviews.create(text: 'blabla', user: user)
+        }.to change(course, :reviews_count).by(1).and change(course, :ratings_count).by(0)
+      end
+
+      it 'increases ratings_count' do
+        expect {
+          course.reviews.create(rating: 1, user: user)
+          course.reload
+        }.to change(course, :reviews_count).by(1).and change(course, :ratings_count).by(1)
+      end
+
+      it 'sets new rating' do
+        expect(course.rating).to eq 0
+        course.reviews.create(rating: 3, user: user)
+        expect(course.rating).to eq 3
+      end
+
+      it 'updates rating' do
+        expect(course.rating).to eq 0
+        course.reviews.create(rating: 3, user: user)
+        course.reviews.create(rating: 4, user: FactoryGirl.create(:user))
+        expect(course.rating).to eq 3.5
+        course.reviews.create!(rating: nil, text: 'okay', user: FactoryGirl.create(:user))
+        expect(course.reload.rating).to eq 3.5
+      end
+    end
+
+    context 'with existing review' do
+      let!(:review) {FactoryGirl.create(:review, rating: nil, course: course)}
+      let!(:review2) {FactoryGirl.create(:review, rating: 3, course: course)}
+
+      it 'adds stars' do
+        course.reload
+        expect(course.rating).to eq 3
+        expect(course.ratings_count).to eq 1
+        expect(course.reviews_count).to eq 2
+        review.update_attributes(rating: 4)
+        course.reload
+        expect(course.rating).to eq 3.5
+        expect(course.ratings_count).to eq 2
+        expect(course.reviews_count).to eq 2
+      end
+
+      it 'removes stars' do
+        review.update_attributes(rating: 4)
+        review.update_attributes(rating: nil)
+        course.reload
+        expect(course.rating).to eq 3
+        expect(course.ratings_count).to eq 1
+        expect(course.reviews_count).to eq 2
+        review2.update_attributes(rating: nil)
+        course.reload
+        expect(course.rating).to eq 0
+        expect(course.ratings_count).to eq 0
+        expect(course.reviews_count).to eq 2
+      end
+
+      it 'increase stars' do
+        review.update_attributes(rating: 3)
+        review.update_attributes(rating: 5)
+        course.reload
+        expect(course.rating).to eq 4.0
+        expect(course.ratings_count).to eq 2
+        expect(course.reviews_count).to eq 2
+      end
+
+      it 'decrease stars' do
+        review.update_attributes(rating: 4)
+        review2.update_attributes(rating: 1)
+        course.reload
+        expect(course.rating).to eq 2.5
+        expect(course.ratings_count).to eq 2
+        expect(course.reviews_count).to eq 2
+      end
+
+      it 'drops rating on nil review destroy' do
+        review.destroy!
+        course.reload
+        expect(course.rating).to eq 3
+        expect(course.ratings_count).to eq 1
+        expect(course.reviews_count).to eq 1
+      end
+
+      it 'drops rating on stars review destroy' do
+        review.update_attributes(rating: 4)
+        review2.destroy!
+        course.reload
+        expect(course.rating).to eq 4
+        expect(course.ratings_count).to eq 1
+        expect(course.reviews_count).to eq 1
+      end
+    end
+  end
+
+  describe '.create' do
     subject {FactoryGirl.build(:review)}
 
     it {should_not allow_value(0).for(:rating)}
