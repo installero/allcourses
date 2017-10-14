@@ -19,9 +19,9 @@ RSpec.describe Course, type: :model do
   end
 
   describe '.create' do
+    let(:c) {Course.create(url: 'http://www.UDEMY.com/mega-course/', title: 'MegaC', description: '', creator: FactoryGirl.create(:user))}
     it 'creates new provider' do
       expect {
-        c = Course.create(url: 'http://www.UDEMY.com/mega-course/', title: 'MegaC', description: '')
         expect(c.provider.domain).to eq 'udemy.com'
         expect(c.provider.title).to eq 'Udemy.com'
       }.to change(Provider, :count).by(1)
@@ -30,7 +30,6 @@ RSpec.describe Course, type: :model do
     it 'links existing provider' do
       p = FactoryGirl.create(:provider, domain: 'udemy.com')
       expect {
-        c = Course.create(url: 'http://www.UDEMY.com/mega-course/', title: 'MegaC', description: '')
         expect(c.provider).to eq p
       }.not_to change(Provider, :count)
     end
@@ -38,14 +37,17 @@ RSpec.describe Course, type: :model do
     it 'doesnt create provider if specified' do
       p = FactoryGirl.create(:provider, domain: 'edx.org')
       expect {
-        c = Course.create!(url: 'http://www.UDEMY.com/mega-course/', title: 'MegaC', description: '', provider: p)
+        c = Course.create!(url: 'http://www.UDEMY.com/mega-course/',
+                           title: 'MegaC', description: '',
+                           provider: p, creator: FactoryGirl.create(:user))
         expect(c.provider).to eq p
       }.not_to change(Provider, :count)
     end
 
     it 'is not saved without provider' do
       expect {
-        c = Course.create(url: 'http://wwwUDEMYcom/mega-course/', title: 'MegaC', description: '')
+        c = Course.create(url: 'http://wwwUDEMYcom/mega-course/', title: 'MegaC',
+                          description: '', creator: FactoryGirl.create(:user))
         expect(c).not_to be_valid
         expect(c).not_to be_persisted
       }.not_to change(Provider, :count)

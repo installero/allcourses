@@ -3,4 +3,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :reviews, dependent: :restrict_with_exception
+  has_many :courses, dependent: :restrict_with_exception
 end
