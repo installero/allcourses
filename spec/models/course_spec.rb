@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Course, type: :model do
-  context 'with simple creation' do
+  describe 'validations' do
     # URL main checks
     it {should_not allow_value('/lsl-sdf-sfdf/').for(:url)}
     it {should_not allow_value('/udemy.com/').for(:url)}
@@ -16,7 +16,9 @@ RSpec.describe Course, type: :model do
     it {should allow_value('https://edx.com').for(:url)}
 
     it {should belong_to(:provider)}
+  end
 
+  describe '.create' do
     it 'creates new provider' do
       expect {
         c = Course.create(url: 'http://www.UDEMY.com/mega-course/', title: 'MegaC', description: '')
