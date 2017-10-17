@@ -57,7 +57,7 @@ RSpec.describe Course, type: :model do
   describe '#upload_avatar' do
     let(:course) {FactoryGirl.create(:course)}
     it 'stores right file in righ path' do
-      course.picture = Rails.root.join('spec/fixtures/avatar.jpg').open
+      course.picture = Rails.root.join('spec/fixtures/avatar.JPEG').open
       course.save!
 
       c1 = Course.last
