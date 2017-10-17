@@ -53,4 +53,30 @@ RSpec.describe Course, type: :model do
       }.not_to change(Provider, :count)
     end
   end
+
+  describe '#upload_avatar' do
+    let(:course) {FactoryGirl.create(:course)}
+    it 'stores right file in righ path' do
+      course.picture = Rails.root.join('spec/fixtures/avatar.jpg').open
+      course.save!
+
+      c1 = Course.last
+      expect(c1.picture.file).to exist
+      expect(c1.picture.content_type).to eq 'image/jpeg'
+      expect(c1.picture.url).to eq('/system/course/picture/000/ad7bc863acc50ad3b747c51c2f85b431.jpg')
+      expect(c1.picture.current_path).to eq(Rails.root.join('public/system/course/picture/000/ad7bc863acc50ad3b747c51c2f85b431.jpg').to_s)
+    end
+
+    it 'doesnt allow not pics' do
+      course.picture = Rails.root.join('spec/fixtures/sample.txt').open
+      expect(course.save).to be_falsey
+      expect(course.errors[:picture]).to be
+    end
+
+    it 'doesnt allow files > 1MB' do
+      course.picture = Rails.root.join('spec/fixtures/1_2mb.jpg').open
+      expect(course.save).to be_falsey
+      expect(course.errors[:picture]).to be
+    end
+  end
 end

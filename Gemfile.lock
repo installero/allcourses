@@ -58,6 +58,10 @@ GEM
       sass (>= 3.4.19)
     builder (3.2.3)
     byebug (9.1.0)
+    carrierwave (1.2.1)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     coderay (1.1.2)
     commonmarker (0.17.4)
       ruby-enum (~> 0.5)
@@ -238,6 +242,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap (~> 4.0.0.beta)
   byebug
+  carrierwave (~> 1.0)
   commonmarker
   devise
   devise-bootstrapped!

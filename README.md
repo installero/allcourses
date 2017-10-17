@@ -22,8 +22,11 @@
 * Provider validations & specs (+ shoulda matcher)
 * Course validations
 * Add Review model
-* Add redcarpet to Review
-
+* Add CommonMarker to Review
+* Add carrierwave picture to Course
+  https://github.com/carrierwaveuploader/carrierwave
+  
+  
 TBD
 
 Views and controllers...

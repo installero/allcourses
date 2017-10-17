@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   include UrlValidator
+  mount_uploader :picture, PictureUploader
 
   belongs_to :provider
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
