@@ -64,7 +64,7 @@ RSpec.describe Course, type: :model do
       expect(c1.picture.file).to exist
       expect(c1.picture.content_type).to eq 'image/jpeg'
       expect(c1.picture.url).to eq('/system/course/picture/000/ad7bc863acc50ad3b747c51c2f85b431.jpg')
-      expect(c1.picture.current_path).to eq(Rails.root.join('public/system/course/picture/000/ad7bc863acc50ad3b747c51c2f85b431.jpg').to_s)
+      expect(c1.picture.current_path).to eq(Rails.root.join('public/system/course/picture/000/a6c1253929f88698fa3e0664d96885d7.jpg').to_s)
     end
 
     it 'doesnt allow not pics' do
