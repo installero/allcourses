@@ -22,7 +22,7 @@
 * Provider validations & specs (+ shoulda matcher)
 * Course validations
 * Add Review model
-
+* Add redcarpet to Review
 
 TBD
 

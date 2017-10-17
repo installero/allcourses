@@ -4,12 +4,15 @@ class Review < ApplicationRecord
 
   validates :text, presence: {if: -> {rating.blank?}}
   validates :rating, presence: {if: -> {text.blank?}}
+  validates :html, presence: {if: -> {text.present?}}
   validates :rating, inclusion: 1..5, allow_nil: true
 
   validates :user_id, uniqueness: {scope: [:course_id]}
 
   after_save :update_course_rating
   after_destroy :remove_course_rating
+
+  before_validation :generate_html
 
   private
 
@@ -21,5 +24,9 @@ class Review < ApplicationRecord
 
   def remove_course_rating
     course.update_avg_rating(rating, nil)
+  end
+
+  def generate_html
+    self.html = CommonMarker.render_html(text.to_s, [:SAFE,:NOBREAKS, :GITHUB_PRE_LANG], [:autolink])
   end
 end

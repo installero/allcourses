@@ -132,5 +132,12 @@ RSpec.describe Review, type: :model do
       expect(r.rating).to be_nil
       expect(r.text).to be_nil
     end
+
+    it 'renders HTML' do
+      course.reviews.create(
+        text: "http://ya.ru \nhey na \n\nney\n ``` ruby\n i = ;\n```\nМир' вам",
+        user: user)
+      expect(course.reviews.last.html).to eq "<p><a href=\"http://ya.ru\">http://ya.ru</a> hey na</p>\n<p>ney</p>\n<pre lang=\"ruby\"><code>i = ;\n</code></pre>\n<p>Мир' вам</p>\n"
+    end
   end
 end

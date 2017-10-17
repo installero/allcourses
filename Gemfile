@@ -16,7 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta'
 
-gem 'public_suffix'
+gem 'public_suffix' # top level domains check
+gem 'commonmarker' # markdown parser used by github
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
