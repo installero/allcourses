@@ -1,0 +1,58 @@
+body { padding-top: 70px; }
+
+//http://stackoverflow.com/a/22991268
+.fixed-table { table-layout: fixed; }
+
+.hide-overflow
+{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+@include media-breakpoint-up(sm) {
+  .display-1-resp {
+    font-size: $display1-size * 0.8;
+    font-weight: $display1-weight * 0.5;
+    line-height: $display-line-height * 0.8;
+  }
+  .display-2-resp {
+    font-size: $display2-size * 0.8;
+    font-weight: $display1-weight;
+    line-height: $display-line-height * 0.8;
+  }
+  .display-3-resp {
+    font-size: $display3-size * 0.8;
+    font-weight: $display2-weight;
+    line-height: $display-line-height * 0.8;
+  }
+  .display-4-resp {
+    font-size: $display4-size * 0.6;
+    font-weight: $display3-weight;
+    line-height: $display-line-height * 0.7;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .display-1-resp {
+    font-size: $display1-size;
+    font-weight: $display1-weight;
+    line-height: $display-line-height;
+  }
+  .display-2-resp {
+    font-size: $display2-size;
+    font-weight: $display2-weight;
+    line-height: $display-line-height;
+  }
+  .display-3-resp {
+    font-size: $display3-size;
+    font-weight: $display3-weight;
+    line-height: $display-line-height;
+  }
+  .display-4-resp {
+    font-size: $display4-size;
+    font-weight: $display4-weight;
+    line-height: $display-line-height;
+  }
+}
+

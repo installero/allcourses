@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-12">
+    <small class="text-muted">User <%= "##{@user.id}" %>, since
+      <nobr><%= l(@user.updated_at, format: :short) %></nobr>
+    </small>
+    <h1 class="display-4-resp hide-overflow"><%= truncate(@user.email, length: 37) %>
+    </h1>
+    <%= link_to 'Edit profile', edit_user_registration_path, class: 'btn btn-primary btn-sm' %>
+    <br>
+  </div>
+</div>
+

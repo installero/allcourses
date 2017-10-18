@@ -11,11 +11,13 @@ gem 'puma', '~> 3.7'
 gem 'pg'
 gem 'devise'
 gem 'carrierwave', '~> 1.0'
+gem 'simple_form'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta'
+gem 'font-awesome-rails'
 
 gem 'public_suffix' # top level domains check
 gem 'commonmarker' # markdown parser used by github
@@ -27,6 +29,7 @@ gem 'commonmarker' # markdown parser used by github
 # gem 'capistrano-rails', group: :development
 
 group :test, :development do
+  gem 'capybara'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'rspec-rails', '~> 3.6'
