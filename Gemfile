@@ -11,6 +11,7 @@ gem 'puma', '~> 3.7'
 gem 'pg'
 gem 'devise'
 gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
 gem 'simple_form'
 
 gem 'sass-rails', '~> 5.0'

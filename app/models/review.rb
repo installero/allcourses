@@ -14,6 +14,9 @@ class Review < ApplicationRecord
 
   before_validation :generate_html
 
+  scope :with_rating, -> {where.not(rating: nil)}
+  scope :with_text, -> {where.not(text: nil)}
+
   private
 
   def update_course_rating

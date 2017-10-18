@@ -64,7 +64,10 @@ RSpec.describe Course, type: :model do
       expect(c1.picture.file).to exist
       expect(c1.picture.content_type).to eq 'image/jpeg'
       expect(c1.picture.url).to match(/\/system\/course\/picture\/\d{3}\/a6c1253929f88698fa3e0664d96885d7\.jpg/)
+      expect(c1.picture.small.url).to match(/\/system\/course\/picture\/\d{3}\/small_a6c1253929f88698fa3e0664d96885d7\.jpg/)
       expect(c1.picture.current_path).to match(/\/public\/system\/course\/picture\/\d{3}\/a6c1253929f88698fa3e0664d96885d7\.jpg/)
+
+      expect(File.size(c1.picture.current_path)).to be > File.size(c1.picture.small.current_path)
     end
 
     it 'doesnt allow not pics' do

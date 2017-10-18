@@ -1,2 +1,53 @@
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<div class="row">
+  <div class="col-md-7">
+    <p>
+      <small class="badge badge-primary"><%= @course.genre %></small>
+      <small>added
+        by <%= link_to @course.creator.id, user_path(@course.creator) %></small>
+    </p>
+    <h1 class="display-4-resp"><%= @course.title %>
+      <!--TODO: if only user is admin -->
+      <%= link_to fa_icon('edit'), edit_course_path(@course), title: 'Edit' %>
+    </h1>
+    <!--TODO: replace by show_provider_path -->
+    <p>
+      <small>By <%= link_to @course.provider.title, @course.provider.url %></small>
+    </p>
+
+    <p>
+      Average rating: <%= @course.rating %>,
+      based on <%= @course.ratings_count %> votes. </p>
+
+    <p>
+      Total reviews <%= @course.reviews_count %>
+    </p>
+
+    <p>
+    <h3>Description</h3>
+    <%= @course.description %>
+    </p>
+  </div>
+
+  <div class="col-md-5">
+    <%= image_tag @course.picture.url %>
+  </div>
+
+  <hr class="mt-4 mb-4">
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h3>Reviews</h3>
+
+    <% @course.reviews.with_text.each do |review| %>
+    <div class="col-md-10">
+      <strong><%= review.rating %></strong>
+      <small><%= l(review.created_at, format: :short) %></small>
+      <small>by <%= link_to review.user.id, user_path(review.user)%></small>
+      <p>
+        <%= review.html.html_safe %>
+      </p>
+      <hr>
+    </div>
+    <% end %>
+  </div>
+</div>

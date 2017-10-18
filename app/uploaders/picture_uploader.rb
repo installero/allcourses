@@ -1,9 +1,44 @@
 class PictureUploader < CarrierWave::Uploader::Base
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   storage :file
+
+  process :main_resize
+
+  def default_url(*args)
+    '/images/course/defaultcoursepic.jpg'
+  end
+
+  # Create different versions of your uploaded files:
+  version :small do
+    process :small_resize
+
+    def default_url(*args)
+      '/images/course/small_defaultcoursepic.jpg'
+    end
+  end
+
+  def small_resize
+    manipulate! do |img|
+      img.format('jpg') do |c|
+        c.resize '200x200^'
+        c.quality '82'
+        c.gravity 'center'
+        c.extent '200x200'
+      end
+      img
+    end
+  end
+
+  def main_resize
+    manipulate! do |img|
+      img.format('jpg') do |c|
+        c.resize '400x300>'
+        c.quality '79'
+      end
+      img
+    end
+  end
 
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # original_filename # content_type
@@ -11,7 +46,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   # https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-efficiently-converting-image-formats
   def filename
     if original_filename.present?
-      extension = content_type.include?('png') ? 'png' : content_type.include?('gif') ? 'gif' : 'jpg'
+      extension = 'jpg' #content_type.include?('png') ? 'png' : content_type.include?('gif') ? 'gif' : 'jpg'
       filename = Digest::MD5.hexdigest(original_filename)
       "#{filename}.#{extension}"
     end
@@ -39,22 +74,4 @@ class PictureUploader < CarrierWave::Uploader::Base
   def size_range
     1..1.megabyte
   end
-
-  # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url(*args)
-    '/images/course/default_avatar.png'
-  end
-
-  # https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-efficiently-converting-image-formats
-  # Process files as they are uploaded:
-  # process scale: [200, 300]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
-
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
 end

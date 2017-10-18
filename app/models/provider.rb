@@ -9,4 +9,8 @@ class Provider < ApplicationRecord
 
   before_validation {self.domain = domain.downcase if domain}
   before_validation {self.title = domain.capitalize if title.blank? && domain.present?}
+
+  def url
+    "http://#{domain}"
+  end
 end
