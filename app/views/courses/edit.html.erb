@@ -1,6 +1,10 @@
-<h1>Editing Course</h1>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Edit Course</h1>
+    <%= render partial: 'form', locals: {course: @course} %>
+    <p>
+      <%= link_to 'Destroy', @course, method: :delete, data: {confirm: 'Are you sure?'} %>
+    </p>
+  </div>
+</div>
 
-<%= render 'form', course: @course %>
-
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>

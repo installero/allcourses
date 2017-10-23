@@ -33,14 +33,14 @@ class Course < ApplicationRecord
                health: 10}
 
   validates :title, presence: true
-  validates :genre, presence: true, numericality: true
+  validates :genre, :inclusion => {:in => genres.keys}
   validates :description, presence: true, allow_blank: true
   validates :rating, numericality: {greater_than_or_equal_to: 0.0, less_than_or_equal_to: 5.0}, allow_nil: true
 
   validates :url, presence: true, uniqueness: true
   validate :url_allowed #UrlOperator
 
-  before_validation :create_provider, unless: :provider
+  before_validation :create_provider
 
   def update_avg_rating(old_stars, new_stars)
     Course.increment_counter(:ratings_count, id) if old_stars.nil?

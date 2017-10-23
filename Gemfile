@@ -12,7 +12,6 @@ gem 'pg'
 gem 'devise'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
-gem 'simple_form'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'

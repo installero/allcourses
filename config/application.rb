@@ -29,3 +29,4 @@ module Allcourses
     config.generators.system_tests = nil
   end
 end
+

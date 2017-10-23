@@ -1,17 +1,43 @@
-<%= form_with(model: course, local: true) do |form| %>
-  <% if course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
-
-      <ul>
-      <% course.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+<%= form_with(model: course, local: true) do |f| %>
+  <div class="row">
+    <%= render partial: 'partials/model_errors', locals: {model: course} %>
   </div>
+  <div class="row">
+    <div class="col-md-10">
+      <div class="form-group">
+        <%= f.label :url %>
+        <%= f.text_field :url, placeholder: 'http://', class: control_class(course, :url) %>
+        <%= hint_for(course, :url, 'Enter unique url to the course official page') %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, placeholder: 'Full title of the course', class: control_class(course, :title) %>
+        <%= hint_for(course, :title) %>
+      </div>
+
+      <!-- TODO localize select  https://stackoverflow.com/questions/25752458/ruby-on-railshow-to-translate-options-of-select-tag -->
+      <div class="form-group">
+        <%= f.label :genre %>
+        <%= f.select :genre, Course.genres.keys, {include_blank: true, value: :blank},
+                     {class: control_class(course, :genre)} %>
+        <%= hint_for(course, :genre) %>
+      </div>
+
+      <!-- TODO fileinput for picture -->
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, placeholder: 'Bried and clear review of the course. What is it about, what is it for, whom is it for?',
+                        rows: 4, class: control_class(course, :description) %>
+        <%= hint_for(course, :description) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10">
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    </div>
+  </div>
+
 <% end %>

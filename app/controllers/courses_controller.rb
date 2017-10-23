@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
@@ -13,6 +14,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+    @course.genre = nil
   end
 
   # GET /courses/1/edit
@@ -22,6 +24,7 @@ class CoursesController < ApplicationController
   # POST /courses
   def create
     @course = Course.new(course_params)
+    @course.creator = current_user
 
     if @course.save
       redirect_to @course, notice: 'Course was successfully created.'
@@ -46,13 +49,25 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def course_params
-      params.fetch(:course, {})
-    end
+  # Only allow a trusted parameter "white list" through.
+  def course_params
+    params.require(:course).permit(
+      :url,
+      :title,
+      :description,
+      :genre
+    )
+  end
+  # t.string :url, null: false
+  # t.string :title, null: false
+  # t.text :description
+  # t.integer :genre, null: false, default: 0
+  # t.float :rating, null: false, default: 0
+  # t.integer :reviews_count, null: false, default: 0
+  # t.integer :ratings_count, null: false, default: 0
 end
