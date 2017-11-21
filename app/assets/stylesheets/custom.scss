@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+body {
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+}
+
+.xsmall {
+  font-size: 75%;
+}
+
+//http://stackoverflow.com/a/22991268
+.fixed-table { table-layout: fixed; }
+
+.hide-overflow {
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
