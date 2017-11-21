@@ -41,6 +41,7 @@ group :development do
 
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'guard-rspec', require: false
+  gem 'guard-livereload', require: false
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
