@@ -4,7 +4,7 @@
       <%= f.input :rating, as: :select, collection: (1..5).to_a %>
       <%= f.input :text, input_html: {rows: 8} %>
       <%= f.submit class: 'btn btn-primary' %>
-      or <%= link_to "cancel", :back, class: 'small' %>
+      <small>or <%= link_to 'cancel', :back %></small>
 
       <% if @review.persisted? %>
         <div class="float-right">

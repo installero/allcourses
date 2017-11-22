@@ -37,7 +37,7 @@
   <div class="row">
     <div class="col-md-10">
       <%= f.button 'Save course', class: 'btn btn-primary' %>
-      or <%= link_to 'cancel', :back, class: 'small' %>
+      <small>or <%= link_to 'cancel', :back %></small>
 
       <% if @course.persisted? %>
         <span class="float-right">
