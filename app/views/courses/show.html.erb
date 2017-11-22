@@ -23,16 +23,18 @@
   </div>
 </div>
 
-<div class="row py-2 my-4 bg-light">
-  <div class="col">
-    Added by <%= link_to @course.creator.email, user_path(@course.creator) %>
-    on <%= l @course.created_at, format: :date %>
+<% if current_user_can_edit?(@course) %>
+  <div class="row py-2 my-4 bg-light">
+    <div class="col">
+      Added by <%= link_to @course.creator.email, user_path(@course.creator) %>
+      on <%= l @course.created_at, format: :date %>
 
-    <div class="float-right">
-      <%= link_to fa_icon('pencil'), edit_course_path(@course), title: 'Edit' %>
+      <div class="float-right">
+        <%= link_to fa_icon('pencil'), edit_course_path(@course), title: 'Edit' %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <div class="my-3">
   <%= rating_stars_for(@course.rating) %> <%= @course.rating %>
