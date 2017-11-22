@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users, only: :show
 
   resources :courses do
-    resources :reviews
+    resources :reviews, except: [:index, :show]
   end
 
   root to: 'courses#index'

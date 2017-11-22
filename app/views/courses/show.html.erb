@@ -37,6 +37,14 @@
 <div class="my-3">
   <%= rating_stars_for(@course.rating) %> <%= @course.rating %>
   <small>(based on <%= pluralize @course.ratings_count, 'vote', 'votes' %>)</small>
+  <span class="float-right">
+    <% if @current_user_review.present?%>
+      <%= link_to "Update your review",
+        edit_course_review_path(@course, @current_user_review) %>
+    <% else %>
+      <%= link_to "Rate this course", new_course_review_path(@course) %>
+    <% end %>
+  </span>
 </div>
 
 <div class="my-3">

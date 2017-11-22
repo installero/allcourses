@@ -1,0 +1,18 @@
+<%= simple_form_for [@course, @review] do |f| %>
+  <div class="row">
+    <div class="col-md-9">
+      <%= f.input :rating, as: :select, collection: (1..5).to_a %>
+      <%= f.input :text, input_html: {rows: 8} %>
+      <%= f.submit class: 'btn btn-primary' %>
+      or <%= link_to "cancel", :back, class: 'small' %>
+
+      <% if @review.persisted? %>
+        <div class="float-right">
+          <%= link_to "Delete review", course_review_path(@course, @review),
+            method: :delete, data: {confirm: 'Are you sure?'},
+            class: 'btn btn-danger' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

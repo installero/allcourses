@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
+    @current_user_review = @course.reviews.find_by(user: current_user)
   end
 
   # GET /courses/new
