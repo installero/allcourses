@@ -22,6 +22,8 @@ gem 'font-awesome-rails'
 gem 'public_suffix' # top level domains check
 gem 'commonmarker' # markdown parser used by github
 
+gem 'simple_form'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
