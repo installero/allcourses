@@ -11,23 +11,19 @@
   <%= javascript_include_tag 'application' %>
 </head>
 
-<body>
-<%= render partial: 'partials/navbar' %>
+<body class="page">
+  <div class="page-content container">
+    <%= render partial: 'partials/navbar' %>
 
-<div class="mt-2">
-  <div class="container">
-    <%= render partial: 'partials/messages' %>
-    <%= yield %>
-  </div>
-</div>
+    <div class="mt-4">
+      <%= render partial: 'partials/flash' unless flash.empty? %>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <hr> &copy; <a href="http://AllCourses.com">AllCourses.com</a>
+      <%= yield %>
     </div>
   </div>
-</div>
 
+  <footer class="page-footer container pb-4">
+    &copy; <a href="#">AllCourses.com</a>
+  </footer>
 </body>
 </html>

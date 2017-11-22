@@ -34,14 +34,14 @@ $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $purple !default;
 $danger:        $orange !default;
-$light:         $white !default;
+$light:         $gray-100 !default;
 $dark:          $gray-800 !default;
 
 $headings-color:              $gray-700 !default;
 
 // Body
 
-$body-bg:                   #FCFCFC !default;
+$body-bg:                   $white !default;
 
 // Fonts
 

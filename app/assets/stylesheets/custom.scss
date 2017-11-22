@@ -17,3 +17,14 @@ body {
   white-space:nowrap;
   text-overflow:ellipsis;
 }
+
+/* Sticky footer */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-content {
+  flex: 1;
+}

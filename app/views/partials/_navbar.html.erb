@@ -1,33 +1,52 @@
-<nav class="navbar navbar-light navbar-toggleble fixed-top bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <ul class="navbar-nav mr-auto">
+    <a class="navbar-brand" href="/">AllCourses.com</a>
+  </ul>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <span class="navbar-brand">
-    <a href="/">AllCourses.com</a>
-  </span>
+  <% if user_signed_in? %>
+    <ul class="navbar-nav ml-auto">
+      <%= link_to "Add Course", new_course_path,
+        class: 'btn btn-outline-primary' %>
+    </ul>
+  <% end %>
 
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item mr-4">
-        <%= link_to 'Add Course', new_course_path, class: 'btn btn-outline-danger' %>
-      </li>
-
-      <% if !user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to fa_icon('sign-in', text: 'Log in'), new_user_session_path, class: 'btn btn-link' %>
-        </li>
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <%= link_to current_user.email, current_user, class: 'nav-link' %>
+        <%= link_to fa_icon('sign-out', text: 'Log out', right: true),
+          destroy_user_session_path, method: 'delete', class: 'nav-link' %>
       <% else %>
-        <li class="nav-item">
-          <%= link_to current_user.email, current_user, class: 'btn btn-outline-primary nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to fa_icon('sign-out', text: 'Log out', right: true), destroy_user_session_path, method: 'delete', class: 'nav-link' %>
-        </li>
+        <%= link_to fa_icon('sign-in', text: 'Log in'), new_user_session_path,
+          class: 'btn btn-link' %>
+        <%= link_to 'Sign up', new_user_registration_path,
+          class: 'btn btn-primary' %>
       <% end %>
     </ul>
   </div>
 </nav>
+
+<!--
+<nav class="navbar navbar-light navbar-toggleble fixed-top bg-faded">
+
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item">
+          kkkkkkk
+        </li>
+        <li class="nav-item">
+        </li>
+        <li class="nav-item">
+        </li>
+        <li class="nav-item">
+        </li>
+    </ul>
+  </div>
+</nav>
+-->
