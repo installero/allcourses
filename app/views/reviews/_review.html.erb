@@ -1,0 +1,15 @@
+<div class="row mt-2">
+  <div class="col-md-3">
+    <%= link_to review.user.email, user_path(review.user)%>
+
+    <div class="xsmall mt-1 text-muted">
+      <%= l review.created_at, format: :date %>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <div><%= rating_stars_for(review.rating) %></div>
+
+    <div class=""><%= review.html.html_safe %></div>
+  </div>
+</div>

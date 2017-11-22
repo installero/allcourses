@@ -30,3 +30,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  time:
+    formats:
+      date: '%d %B %Y'
