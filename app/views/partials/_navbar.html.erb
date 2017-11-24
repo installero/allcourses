@@ -3,8 +3,8 @@
     <a class="navbar-brand" href="/">AllCourses.com</a>
   </ul>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+    data-target="#navbarNav"><span class="navbar-toggler-icon"></span>
   </button>
 
   <% if user_signed_in? %>
@@ -17,7 +17,8 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
-        <%= link_to current_user.email, current_user, class: 'nav-link' %>
+        <%= link_to current_user.name, current_user,
+          class: 'nav-link text-primary' %>
         <%= link_to fa_icon('sign-out', text: 'Log out', right: true),
           destroy_user_session_path, method: 'delete', class: 'nav-link' %>
       <% else %>
@@ -29,24 +30,3 @@
     </ul>
   </div>
 </nav>
-
-<!--
-<nav class="navbar navbar-light navbar-toggleble fixed-top bg-faded">
-
-
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
-
-        <li class="nav-item">
-          kkkkkkk
-        </li>
-        <li class="nav-item">
-        </li>
-        <li class="nav-item">
-        </li>
-        <li class="nav-item">
-        </li>
-    </ul>
-  </div>
-</nav>
--->

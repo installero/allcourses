@@ -10,7 +10,7 @@ Rails.application.routes.draw do
              as: :user_registration
   end
 
-  resources :users, only: :show
+  resources :users, only: [:show, :edit, :update]
 
   resources :courses do
     resources :reviews, except: [:index, :show]

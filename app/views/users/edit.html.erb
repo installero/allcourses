@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-lg-5 col-md-6 col-sm-8 ml-auto mr-auto">
+    <h1 class="text-center">User information</h1>
+    <p class="text-center">Update you personal details</p>
+
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :first_name, autofocus: true %>
+      <%= f.input :last_name, autofocus: true %>
+
+      <%= f.button :submit, 'Save changes', class: 'btn btn-primary' %>
+      or <%= link_to "cancel", :back, class: 'small' %>
+    <% end %>
+  </div>
+</div>

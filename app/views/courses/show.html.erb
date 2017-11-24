@@ -26,7 +26,7 @@
 <% if current_user_can_edit?(@course) %>
   <div class="row py-2 my-4 bg-light">
     <div class="col">
-      Added by <%= link_to @course.creator.email, user_path(@course.creator) %>
+      Added by <%= link_to @course.creator.name, user_path(@course.creator) %>
       on <%= l @course.created_at, format: :date %>
 
       <div class="float-right">
