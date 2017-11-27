@@ -1,6 +1,12 @@
 <div class="row">
   <div class="col-md-12">
-    <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+    <div class="mb-3">
+      <%= image_tag @user.avatar.profile.url, class: 'rounded-circle' %>
+    </div>
+
+    <h1>
+      <%= @user.first_name %> <%= @user.last_name %>
+    </h1>
 
     <p class="small text-muted">
       Studying since <nobr><%= l @user.updated_at, format: :date %></nobr>

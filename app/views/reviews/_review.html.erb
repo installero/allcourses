@@ -1,6 +1,9 @@
 <div class="row mt-2">
   <div class="col-md-3">
-    <%= link_to review.user.email, user_path(review.user)%>
+    <%= link_to image_tag(review.user.avatar.thumb.url,
+                          class: 'img-inline rounded-circle'), review.user %>
+
+    <%= link_to review.user.name, user_path(review.user)%>
 
     <div class="xsmall mt-1 text-muted">
       <%= l review.created_at, format: :date %>

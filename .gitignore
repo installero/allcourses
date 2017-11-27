@@ -21,7 +21,9 @@
 /yarn-error.log
 
 .byebug_history
-.byebug_history
 /config/database.yml
 /config/secrets.yml
+
+# Files uploaded by carrierwave and paperclip
 /public/system
+/public/uploads

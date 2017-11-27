@@ -5,7 +5,14 @@
 
     <%= simple_form_for @user do |f| %>
       <%= f.input :first_name, autofocus: true %>
-      <%= f.input :last_name, autofocus: true %>
+      <%= f.input :last_name %>
+
+      <div class="form-group">
+        <%= f.label :avatar %>
+        <div class='mb-2'><%= image_tag @user.avatar.profile.url,
+          class: 'img-fluid rounded-circle' %></div>
+        <%= f.file_field :avatar %>
+      </div>
 
       <%= f.button :submit, 'Save changes', class: 'btn btn-primary' %>
       or <%= link_to "cancel", :back, class: 'small' %>

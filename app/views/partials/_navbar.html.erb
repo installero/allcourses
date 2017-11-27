@@ -17,8 +17,11 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
+        <%= link_to image_tag(
+          current_user.avatar.thumb.url, class: 'img-inline rounded-circle'
+        ), current_user, class: 'nav-link pr-1' %>
         <%= link_to current_user.name, current_user,
-          class: 'nav-link text-primary' %>
+          class: 'nav-link text-primary pl-1' %>
         <%= link_to fa_icon('sign-out', text: 'Log out', right: true),
           destroy_user_session_path, method: 'delete', class: 'nav-link' %>
       <% else %>
