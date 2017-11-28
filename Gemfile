@@ -22,12 +22,17 @@ gem 'uglifier', '>= 1.3.0'
 
 group :test, :development do
   gem 'capybara'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.6'
   gem 'shoulda-matchers'
 end
 
 group :development do
+  gem 'capistrano', '~> 3.7'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-passenger', '~> 0.2'
+  gem 'capistrano-rbenv', '~> 2.1'
+
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
   gem 'guard-livereload', require: false

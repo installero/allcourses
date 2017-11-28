@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :course do
     sequence(:title) {|n| "Course ##{n}"}
     sequence(:genre) {|n| n % 10}

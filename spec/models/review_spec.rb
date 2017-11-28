@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  let(:user) {FactoryGirl.create(:user)}
-  let(:course) {FactoryGirl.create(:course)}
+  let(:user) {FactoryBot.create(:user)}
+  let(:course) {FactoryBot.create(:course)}
 
   describe '.update_course_rating' do
     context 'with new review' do
@@ -28,16 +28,16 @@ RSpec.describe Review, type: :model do
       it 'updates rating' do
         expect(course.rating).to eq 0
         course.reviews.create(rating: 3, user: user)
-        course.reviews.create(rating: 4, user: FactoryGirl.create(:user))
+        course.reviews.create(rating: 4, user: FactoryBot.create(:user))
         expect(course.rating).to eq 3.5
-        course.reviews.create!(rating: nil, text: 'okay', user: FactoryGirl.create(:user))
+        course.reviews.create!(rating: nil, text: 'okay', user: FactoryBot.create(:user))
         expect(course.reload.rating).to eq 3.5
       end
     end
 
     context 'with existing review' do
-      let!(:review) {FactoryGirl.create(:review, rating: nil, course: course)}
-      let!(:review2) {FactoryGirl.create(:review, rating: 3, course: course)}
+      let!(:review) {FactoryBot.create(:review, rating: nil, course: course)}
+      let!(:review2) {FactoryBot.create(:review, rating: 3, course: course)}
 
       it 'adds stars' do
         course.reload
@@ -103,7 +103,7 @@ RSpec.describe Review, type: :model do
   end
 
   describe '.create' do
-    subject {FactoryGirl.build(:review)}
+    subject {FactoryBot.build(:review)}
 
     it {should_not allow_value(0).for(:rating)}
     it {should_not allow_value(6).for(:rating)}
@@ -113,21 +113,21 @@ RSpec.describe Review, type: :model do
     it {should validate_uniqueness_of(:user_id).scoped_to(:course_id)}
 
     it 'allows nil text if rating present' do
-      r = FactoryGirl.create(:review, rating: 5, text: nil)
+      r = FactoryBot.create(:review, rating: 5, text: nil)
       expect(r).to be_valid
       expect(r.rating).to eq 5
       expect(r.text).not_to be
     end
 
     it 'allows nil rating if text present' do
-      r = FactoryGirl.create(:review, rating: nil)
+      r = FactoryBot.create(:review, rating: nil)
       expect(r).to be_valid
       expect(r.rating).to be_nil
       expect(r.text).to be
     end
 
     it 'doesnt allow nil text&rating' do
-      r = FactoryGirl.build(:review, rating: nil, text: nil)
+      r = FactoryBot.build(:review, rating: nil, text: nil)
       expect(r).not_to be_valid
       expect(r.rating).to be_nil
       expect(r.text).to be_nil

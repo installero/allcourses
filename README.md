@@ -1,6 +1,9 @@
-# Steps
+# Development log
 
-* rails new allcourses -T --skip-spring --skip-turbolinks
+* App created  
+  ```
+  rails new allcourses -T --skip-spring --skip-turbolinks
+  ```  
 * pushed to bitbucket
 * added bootstrap 4: https://github.com/twbs/bootstrap-rubygem
 * added rspec: https://github.com/rspec/rspec-rails
@@ -18,18 +21,27 @@
   rails db:migrate
   rails g devise:views:bootstrapped (https://github.com/king601/devise-bootstrapped)
 * Add letter_opener
-  
 * Provider validations & specs (+ shoulda matcher)
 * Course validations
 * Add Review model
 * Add CommonMarker to Review
 * Add carrierwave picture to Course
   https://github.com/carrierwaveuploader/carrierwave
-  
-  
-TBD
 
-Views and controllers...
-  custom devise form messages:
-    https://github.com/plataformatec/devise/wiki/How-To:-Integrate-I18n-Flash-Messages-with-Devise-and-Bootstrap
-    кастомазация лэйаута и связанных вьюх, включая сгенеренные девайзовские
+## Capistrano setup
+
+* Gemfile `:development`   
+  `gem 'capistrano', '~> 3.7'
+   gem 'capistrano-rails', '~> 1.2'
+   gem 'capistrano-passenger', '~> 0.2'
+   gem 'capistrano-rbenv', '~> 2.1'`
+
+  
+# TBD
+
+- Views and controllers...
+- custom devise form messages:  
+  [https://github.com/plataformatec/devise/wiki/How-To:-Integrate-I18n-Flash-Messages-with-Devise-and-Bootstrap]
+- кастомазация лэйаута и связанных вьюх, включая сгенеренные девайзовские
+- Имя+Фамилия и невидимая Рекапча на девайзовскую регистрацию
+

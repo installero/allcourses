@@ -18,7 +18,7 @@ RSpec.describe Provider, type: :model do
     it {should have_many(:courses).dependent(:restrict_with_exception)}
 
     it 'downcases domain' do
-      provider = FactoryGirl.create(:provider, domain: 'EdX.oRg')
+      provider = FactoryBot.create(:provider, domain: 'EdX.oRg')
       expect(provider.domain).to eq 'edx.org'
     end
   end
