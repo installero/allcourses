@@ -35,6 +35,29 @@
    gem 'capistrano-rails', '~> 1.2'
    gem 'capistrano-passenger', '~> 0.2'
    gem 'capistrano-rbenv', '~> 2.1'`
+* `cap install STAGES=production`
+* To the END of Capfile   
+ ```
+  require 'capistrano/rbenv'
+  require 'capistrano/rails'
+  require 'capistrano/passenger'
+  
+  set :rbenv_type, :user
+  set :rbenv_ruby, '2.4.1'
+  ```
+* deploy.rb  
+```
+set :application, 'allcourses'
+set :repo_url, 'git@github.com:installero/allcourses.git'
+set :deploy_to, '/home/deploy/apps/allcourses'
+append :linked_files, 'config/database.yml', 'config/secrets.yml'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
+```
+* deploy/production.rb  
+  `server 'allcours.es', user: 'deploy', roles: %w{app db web}`
+* production.rb mailer options set up
+* nginx configuration step, no new code
+  
 
   
 # TBD
