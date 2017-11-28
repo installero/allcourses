@@ -3,23 +3,23 @@ require 'rails_helper'
 RSpec.describe Course, type: :model do
   describe 'validations' do
     # URL main checks
-    it {should_not allow_value('/lsl-sdf-sfdf/').for(:url)}
-    it {should_not allow_value('/udemy.com/').for(:url)}
-    it {should_not allow_value('ht:coursera.org').for(:url)}
-    it {should_not allow_value('http:edx.com').for(:url)}
-    it {should allow_value('edx.com/#super-courrse-mega').for(:url)}
-    it {should allow_value('www.udemy.com/?q=1').for(:url)}
-    it {should allow_value('udemy.com//?q=1').for(:url)}
-    it {should allow_value('udemy.com/mega-reference-').for(:url)}
-    it {should allow_value('coursera.org').for(:url)}
-    it {should allow_value('http://coursera.org').for(:url)}
-    it {should allow_value('https://edx.com').for(:url)}
+    it { should_not allow_value('/lsl-sdf-sfdf/').for(:url) }
+    it { should_not allow_value('/udemy.com/').for(:url) }
+    it { should_not allow_value('ht:coursera.org').for(:url) }
+    it { should_not allow_value('http:edx.com').for(:url) }
+    it { should allow_value('edx.com/#super-courrse-mega').for(:url) }
+    it { should allow_value('www.udemy.com/?q=1').for(:url) }
+    it { should allow_value('udemy.com//?q=1').for(:url) }
+    it { should allow_value('udemy.com/mega-reference-').for(:url) }
+    it { should allow_value('coursera.org').for(:url) }
+    it { should allow_value('http://coursera.org').for(:url) }
+    it { should allow_value('https://edx.com').for(:url) }
 
-    it {should belong_to(:provider)}
+    it { should belong_to(:provider) }
   end
 
   describe '.create' do
-    let(:c) {Course.create(url: 'http://www.UDEMY.com/mega-course/', title: 'MegaC', description: '', creator: FactoryBot.create(:user))}
+    let(:c) { Course.create(url: 'http://www.UDEMY.com/mega-course/', title: 'MegaC', description: '', creator: FactoryBot.create(:user)) }
     it 'creates new provider' do
       expect {
         expect(c.provider.domain).to eq 'udemy.com'
@@ -55,7 +55,7 @@ RSpec.describe Course, type: :model do
   end
 
   describe '#upload_avatar' do
-    let(:course) {FactoryBot.create(:course)}
+    let(:course) { FactoryBot.create(:course) }
     it 'stores right file in righ path' do
       course.picture = Rails.root.join('spec/fixtures/avatar.JPEG').open
       course.save!

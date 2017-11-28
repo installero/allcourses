@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  let(:user) {FactoryBot.create(:user)}
-  let(:course) {FactoryBot.create(:course)}
+  let(:user) { FactoryBot.create(:user) }
+  let(:course) { FactoryBot.create(:course) }
 
   describe '.update_course_rating' do
     context 'with new review' do
@@ -36,8 +36,8 @@ RSpec.describe Review, type: :model do
     end
 
     context 'with existing review' do
-      let!(:review) {FactoryBot.create(:review, rating: nil, course: course)}
-      let!(:review2) {FactoryBot.create(:review, rating: 3, course: course)}
+      let!(:review) { FactoryBot.create(:review, rating: nil, course: course) }
+      let!(:review2) { FactoryBot.create(:review, rating: 3, course: course) }
 
       it 'adds stars' do
         course.reload
@@ -103,14 +103,14 @@ RSpec.describe Review, type: :model do
   end
 
   describe '.create' do
-    subject {FactoryBot.build(:review)}
+    subject { FactoryBot.build(:review) }
 
-    it {should_not allow_value(0).for(:rating)}
-    it {should_not allow_value(6).for(:rating)}
-    it {should allow_value(nil).for(:rating)}
-    it {should allow_value(1).for(:rating)}
+    it { should_not allow_value(0).for(:rating) }
+    it { should_not allow_value(6).for(:rating) }
+    it { should allow_value(nil).for(:rating) }
+    it { should allow_value(1).for(:rating) }
 
-    it {should validate_uniqueness_of(:user_id).scoped_to(:course_id)}
+    it { should validate_uniqueness_of(:user_id).scoped_to(:course_id) }
 
     it 'allows nil text if rating present' do
       r = FactoryBot.create(:review, rating: 5, text: nil)

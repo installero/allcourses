@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :course do
-    sequence(:title) {|n| "Course ##{n}"}
-    sequence(:genre) {|n| n % 10}
-    sequence(:url) {|n| "http://example#{n % 10}.edu/course-#{n}-url/"}
+    sequence(:title) { |n| "Course ##{n}" }
+    sequence(:genre) { |n| n % 10 }
+    sequence(:url) { |n| "http://example#{n % 10}.edu/course-#{n}-url/" }
 
     # association(:provider)
     association(:creator, factory: :user)
