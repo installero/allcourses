@@ -57,8 +57,24 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
   `server 'allcours.es', user: 'deploy', roles: %w{app db web}`
 * production.rb mailer options set up
 * nginx configuration step, no new code
-  
+  `rsync -rp /...my-local-path.../sites-available/allcourses.conf root@allcours.es:/etc/nginx/sites-available`
+  `sudo ln -s /etc/nginx/sites-available/allcourses.conf /etc/nginx/sites-enabled/allcourses.conf`
+* PG setup - user
+  sudo su - postgres
+  psql
+  \dg
+  CREATE USER * WITH PASSWORD 'xxx';
+    	
+* PG setup - DB
+  CREATE DATABASE "*" WITH OWNER = *;
+  \l  
+  \q
+  psql -h localhost -U <user> -W <dbname>
 
+* Initial deploy
+  `cap production deploy:check`
+  `cap production deploy`
+   
   
 # TBD
 
