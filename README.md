@@ -1,3 +1,9 @@
+# TODO:
+
+- [ ] Write some actual README.md here
+- [ ] Log in using Facebook, Google, Github, Twitter (discuss the list)
+- [ ] List user reviews/ratings on profile page
+
 # Development log
 
 * App created  
