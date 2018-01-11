@@ -1,6 +1,7 @@
 # TODO:
 
 - [ ] Write some actual README.md here
+- [ ] Configure email notifications (to confirm users, for example)
 - [ ] Log in using Facebook, Google, Github, Twitter (discuss the list)
 - [ ] List user reviews/ratings on profile page
 
