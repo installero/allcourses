@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127143107) do
+ActiveRecord::Schema.define(version: 20180114190432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20171127143107) do
     t.index ["provider_id"], name: "index_courses_on_provider_id"
     t.index ["url"], name: "index_courses_on_url", unique: true
     t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "oauth_identities", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_oauth_identities_on_user_id"
   end
 
   create_table "providers", force: :cascade do |t|
@@ -82,6 +91,7 @@ ActiveRecord::Schema.define(version: 20171127143107) do
 
   add_foreign_key "courses", "providers", on_update: :cascade, on_delete: :restrict
   add_foreign_key "courses", "users", on_update: :cascade, on_delete: :restrict
+  add_foreign_key "oauth_identities", "users"
   add_foreign_key "reviews", "courses", on_update: :cascade, on_delete: :cascade
   add_foreign_key "reviews", "users", on_update: :cascade, on_delete: :restrict
 end
