@@ -5,7 +5,7 @@
 - [ ] Log in using Facebook, Google, Github, Twitter (discuss the list)
 - [ ] List user reviews/ratings on profile page
 - [ ] Fetch course info using course URL with popular providers
-- [ ] Default user thumbnail
+- [v] Default user avatars
 
 # Development log
 

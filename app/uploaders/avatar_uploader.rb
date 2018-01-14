@@ -1,5 +1,8 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  include LetterAvatar::AvatarHelper
+
+  SIZES = {full: 300, medium: 200, thumb: 25}
 
   storage :file
 
@@ -8,19 +11,19 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url(*args)
-    "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+    letter_avatar_url(model.name, SIZES[version_name])
   end
 
   def scale(width, height)
-    process scale: [300, 300]
+    process scale: [SIZES[:full], SIZES[:full]]
   end
 
-  version :profile do
-    process resize_to_fill: [200, 200]
+  version :medium do
+    process resize_to_fill: [SIZES[:medium], SIZES[:medium]]
   end
 
   version :thumb do
-    process resize_to_fill: [25, 25]
+    process resize_to_fill: [SIZES[:thumb], SIZES[:thumb]]
   end
 
   def extension_whitelist
