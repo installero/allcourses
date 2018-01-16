@@ -2,7 +2,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   include LetterAvatar::AvatarHelper
 
-  SIZES = {full: 300, medium: 200, thumb: 25}
+  SIZES = {full: 300, medium: 200, thumb: 25}.freeze
 
   storage :file
 
