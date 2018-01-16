@@ -148,6 +148,7 @@ GEM
     jwt (1.5.6)
     launchy (2.4.3)
       addressable (~> 2.3)
+    letter_avatar (0.3.6)
     letter_opener (1.6.0)
       launchy (~> 2.2)
     listen (3.1.5)
@@ -327,6 +328,7 @@ DEPENDENCIES
   guard-livereload
   guard-rspec
   jquery-rails
+  letter_avatar
   letter_opener
   listen (>= 3.0.5, < 3.2)
   mini_magick

@@ -9,7 +9,7 @@
 
       <div class="form-group">
         <%= f.label :avatar %>
-        <div class='mb-2'><%= image_tag @user.avatar.profile.url,
+        <div class='mb-2'><%= image_tag @user.avatar.medium.url,
           class: 'img-fluid rounded-circle' %></div>
         <%= f.file_field :avatar %>
       </div>
