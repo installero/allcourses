@@ -2,7 +2,9 @@
 
 - [ ] Write some actual README.md here
 - [ ] Configure email notifications (to confirm users, for example)
-- [ ] Log in using Facebook, Google, Github, Twitter (discuss the list)
+- [x] Log in using Facebook
+- [ ] Log in using Google, Github, Twitter (discuss the list)
+- [ ] Allow users to update their own profile only (every one can update anybody's profile now)
 - [ ] List user reviews/ratings on profile page
 - [ ] Fetch course info using course URL with popular providers
 - [ ] Default user thumbnail
