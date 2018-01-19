@@ -36,3 +36,22 @@ body {
   margin-top: -0.1em;
 }
 
+.text-bg-primary {
+  background: rgba($gray-100, 0.9);
+  padding: .075em;
+}
+
+.text-limit {
+  position: relative;
+}
+
+$text-limit-line-height: 1.25em;
+
+.text-limit-4-inner {
+  position: relative;
+  display: inline-block;
+  word-wrap: break-word;
+  overflow: hidden;
+  line-height: $text-limit-line-height;
+  max-height: $text-limit-line-height * 4;
+}
