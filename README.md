@@ -8,6 +8,8 @@
 - [ ] List user reviews/ratings on profile page
 - [ ] Fetch course info using course URL with popular providers
 - [x] Default user avatars
+- [ ] Favicon
+- [ ] Create privacy policy page to enable Facebook log in (in dev mode now)
 
 # Development log
 
