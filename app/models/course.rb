@@ -40,7 +40,7 @@ class Course < ApplicationRecord
   validates :url, presence: true, uniqueness: true
   validate :url_allowed #UrlOperator
 
-  before_validation :create_provider
+  before_validation :create_provider, unless: :provider
 
   def update_avg_rating(old_stars, new_stars)
     Course.increment_counter(:ratings_count, id) if old_stars.nil?

@@ -34,7 +34,7 @@ RSpec.describe Course, type: :model do
       }.not_to change(Provider, :count)
     end
 
-    pending 'doesnt create provider if specified' do
+    it 'doesnt create provider if specified' do
       p = FactoryBot.create(:provider, domain: 'edx.org')
       expect {
         c = Course.create!(url: 'http://www.UDEMY.com/mega-course/',
