@@ -1,16 +1,15 @@
 # What is this
 **IMDB for online courses**
 
-[Allcours.es](http://Allcours.es) — independent online courses collection with ratings, reviews and personal information (for registered users).
-
+[Allcours.es](http://Allcours.es) — independent online courses database with ratings, reviews and 
+personal course information.  
 *v. 0.1.0, not released yet* 
 
 # Open source
 You can make a difference by contributing to this project and spreading the word. 
 
-You're **developer** — follow the [Setup guide](#setup-guide) and send us your pull-requests.
-
-You're **not** developer — welcome to share your ideas and thoughts on *hi@allcours.es*
+**Developer** — follow the [Setup guide](#setup-guide) and send us your pull-requests.  
+**Not** developer — welcome to share your ideas and thoughts on *hi@allcours.es*
 
 **License**  
 Any commercial use of the code or any part of it aside of the allcours.es website should be 
@@ -32,17 +31,15 @@ A bunch of things to implement for the release, before talking roadmaps:
 - [ ] Show users' ratings on course page, course partial etc.
 - [ ] customize devise form messages [howto](https://github.com/plataformatec/devise/wiki/How-To:-Integrate-I18n-Flash-Messages-with-Devise-and-Bootstrap)
 - [ ] Personal course notes feature (MD private richtext area)
-- [x] Configure email notifications (to confirm users, for example)
-- [x] Log in using Facebook
-- [x] Default user avatars
+- [x] ~~Configure email notifications (to confirm users, for example)~~
+- [x] ~~Log in using Facebook~~
+- [x] ~~Default user avatars~~
 - [ ] Favicon
 
 # Setup guide
 
 This is Rails 5, ruby 2.4.1, Postgres 9.6, Capistrano 3, nginx-passenger web application 
-living at [Allcours.es](http://Allcours.es). 
-
-Master branch is deployed by product owners (@installero, @aristofun) on a regular basis.
+living at [Allcours.es](http://Allcours.es). Master branch is deployed by product owners (@installero, @aristofun) on a regular basis.
 
 ## 1. Ready
 * Install and setup Postgres 9.6 locally.  
@@ -78,7 +75,7 @@ Specs `bundle exec rspec`
 
 
 # Devlog
-*this chapter will be erased soon, never mind :)*
+*This chapter to be erased after release*
 
 * App created
   ```
