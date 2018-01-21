@@ -2,34 +2,36 @@
   <div class="col-lg-5 col-md-6 col-sm-8 ml-auto mr-auto">
     <h1 class="text-center">Sign Up</h1>
 
-    <%= form_for resource, as: resource_name,
-      url: registration_path(resource_name) do |f| %>
+    <%= form_for(resource, as: resource_name,
+                 url: registration_path(resource_name),
+                 html: {id: 'invisible-recaptcha-form'}) do |f| %>
       <%= devise_error_messages! %>
 
       <div class="form-group">
         <div class="form-row">
-          <div class="col"><%= f.text_field :first_name, autofocus: true,
-            class: 'form-control', placeholder: "First name" %></div>
-          <div class="col"><%= f.text_field :last_name,
-            class: 'form-control', placeholder: "Last name" %></div>
+          <div class="col">
+            <%= f.text_field :first_name, autofocus: true, class: 'form-control', placeholder: "First name" %></div>
+          <div class="col">
+            <%= f.text_field :last_name, class: 'form-control', placeholder: "Last name" %></div>
         </div>
       </div>
 
-      <div class="form-group"><%= f.email_field :email,
-        class: 'form-control', placeholder: "Email Address" %>
-      </div>
-
-      <div class="form-group"><%= f.password_field :password,
-        autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
-      </div>
-
-      <div class="form-group"><%= f.password_field :password_confirmation,
-        autocomplete: "off", class: 'form-control',
-        placeholder: 'Confirm Password' %>
+      <div class="form-group">
+        <%= f.email_field :email, class: 'form-control', placeholder: "Email Address" %>
       </div>
 
       <div class="form-group">
-        <%= f.submit "Sign up", class: "btn btn-primary btn-block btn-lg" %>
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control',
+                             placeholder: 'Confirm Password' %>
+      </div>
+
+      <div class="form-group">
+        <%= invisible_recaptcha_tags callback: 'submitInvisibleRecaptchaForm', text: 'Sign up',
+                                     class: 'btn btn-primary btn-block btn-lg' %>
       </div>
     <% end %>
 

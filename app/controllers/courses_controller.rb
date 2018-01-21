@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
     @course.creator = current_user
 
-    if @course.save
+    if verify_recaptcha(model: @course) && @course.save
       redirect_to @course, notice: 'Course was successfully created.'
     else
       render :new
@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
   end
 
   def update
-    if @course.update(course_params)
+    if verify_recaptcha(model: @course) && @course.update(course_params)
       redirect_to @course, notice: 'Course was successfully updated.'
     else
       render :edit

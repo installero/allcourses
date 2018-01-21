@@ -1,6 +1,4 @@
-# What is this
-**IMDB for online courses**
-
+# IMDB for online courses
 [Allcours.es](http://Allcours.es) — independent online courses database with ratings, reviews and 
 personal course information.  
 *v. 0.1.0, not released yet* 
@@ -18,12 +16,13 @@ explicitely approved by the founders Michael Butlitsky (@aristofun) and Vadim Ve
 # TODO
 A bunch of things to implement for the release, before talking roadmaps: 
 
-- [ ] Invisible recaptcha on signup
+- [x] ~~Invisible recaptcha on signup & adding new course~~
 - [ ] Fetch course info using course URL from popular providers
 - [ ] Complete course CRUD
 - [ ] Complete Review CRUD
 - [ ] Review Lists in user profile, in index page, on the course page
 - [ ] Course Lists by genre, in user profile ("courses he had taken") with sorting by date, by rating
+- [ ] Add autocontent generator to dev using Faker gem
 - [ ] Create privacy policy page to enable Facebook log in (in dev mode now)
 - [ ] Restrict users to update their own profile only (every one can update anybody's profile now)
 - [ ] Index page filled with recently added courses and reviews
