@@ -1,17 +1,84 @@
-# TODO:
+# What is this
+**IMDB for online courses**
 
-- [ ] Write some actual README.md here
-- [ ] Configure email notifications (to confirm users, for example)
+[Allcours.es](http://Allcours.es) — independent online courses collection with ratings, reviews and personal information (for registered users).
+
+*v. 0.1.0, not released yet* 
+
+# Open source
+You can make a difference by contributing to this project and spreading the word. 
+
+You're **developer** — follow the [Setup guide](#setup-guide) and send us your pull-requests.
+
+You're **not** developer — welcome to share your ideas and thoughts on *hi@allcours.es*
+
+**License**  
+Any commercial use of the code or any part of it aside of the allcours.es website should be 
+explicitely approved by the founders Michael Butlitsky (@aristofun) and Vadim Venediktov (@installero).
+
+# TODO
+A bunch of things to implement for the release, before talking roadmaps: 
+
+- [ ] Invisible recaptcha on signup
+- [ ] Fetch course info using course URL from popular providers
+- [ ] Complete course CRUD
+- [ ] Complete Review CRUD
+- [ ] Review Lists in user profile, in index page, on the course page
+- [ ] Course Lists by genre, in user profile ("courses he had taken") with sorting by date, by rating
+- [ ] Create privacy policy page to enable Facebook log in (in dev mode now)
+- [ ] Restrict users to update their own profile only (every one can update anybody's profile now)
+- [ ] Index page filled with recently added courses and reviews
+- [ ] Log in using Google, Github
+- [ ] Show users' ratings on course page, course partial etc.
+- [ ] customize devise form messages [howto](https://github.com/plataformatec/devise/wiki/How-To:-Integrate-I18n-Flash-Messages-with-Devise-and-Bootstrap)
+- [ ] Personal course notes feature (MD private richtext area)
+- [x] Configure email notifications (to confirm users, for example)
 - [x] Log in using Facebook
-- [ ] Log in using Google, Github, Twitter (discuss the list)
-- [ ] Allow users to update their own profile only (every one can update anybody's profile now)
-- [ ] List user reviews/ratings on profile page
-- [ ] Fetch course info using course URL with popular providers
 - [x] Default user avatars
 - [ ] Favicon
-- [ ] Create privacy policy page to enable Facebook log in (in dev mode now)
 
-# Development log
+# Setup guide
+
+This is Rails 5, ruby 2.4.1, Postgres 9.6, Capistrano 3, nginx-passenger web application 
+living at [Allcours.es](http://Allcours.es). 
+
+Master branch is deployed by product owners (@installero, @aristofun) on a regular basis.
+
+## 1. Ready
+* Install and setup Postgres 9.6 locally.  
+* Ruby 2.4.1 using RBENV/RVM is recommended.  
+
+## 2. Steady
+Set up your local Postgres DB. **Beware of collation and ctype**, we use UTF8 and en_US.UTF-8
+
+For example:
+ 
+``` sh
+> psql
+CREATE USER username_for_allcourses WITH PASSWORD '<your password>' CREATEDB REPLICATION CONNECTION LIMIT 10;
+CREATE DATABASE db_name_for_dev WITH LC_COLLATE='en_US.UTF-8' LC_CTYPE='en_US.UTF-8' ENCODING=UTF8 OWNER=username_for_allcourses;
+CREATE DATABASE db_name_for_test WITH LC_COLLATE='en_US.UTF-8' LC_CTYPE='en_US.UTF-8' ENCODING=UTF8 OWNER=username_for_allcourses;
+```
+ 
+Check connection:
+
+```
+psql -h localhost -U <username_for_allcourses> -W <db_name_for_(dev|test)>
+```
+
+## 3. Go!
+* Download the code (fork/clone repo)
+* `bundle install`
+* `bundle exec rails db:migrate`
+* Configure your copy of `config/database.yml` according to your Postgres configuration 
+* Configure your copy of `config/secrets.yml` according to secrets.example.yml 
+
+Now you can run it locally  `bundle exec rails s`.
+Specs `bundle exec rspec`
+
+
+# Devlog
+*this chapter will be erased soon, never mind :)*
 
 * App created
   ```
@@ -40,59 +107,3 @@
 * Add CommonMarker to Review
 * Add carrierwave picture to Course
   https://github.com/carrierwaveuploader/carrierwave
-
-## Capistrano setup
-
-* Gemfile `:development`
-  `gem 'capistrano', '~> 3.7'
-   gem 'capistrano-rails', '~> 1.2'
-   gem 'capistrano-passenger', '~> 0.2'
-   gem 'capistrano-rbenv', '~> 2.1'`
-* `cap install STAGES=production`
-* To the END of Capfile
- ```
-  require 'capistrano/rbenv'
-  require 'capistrano/rails'
-  require 'capistrano/passenger'
-
-  set :rbenv_type, :user
-  set :rbenv_ruby, '2.4.1'
-  ```
-* deploy.rb
-```
-set :application, 'allcourses'
-set :repo_url, 'git@github.com:installero/allcourses.git'
-set :deploy_to, '/home/deploy/apps/allcourses'
-append :linked_files, 'config/database.yml', 'config/secrets.yml'
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
-```
-* deploy/production.rb
-  `server 'allcours.es', user: 'deploy', roles: %w{app db web}`
-* production.rb mailer options set up
-* nginx configuration step, no new code
-  `rsync -rp /...my-local-path.../sites-available/allcourses.conf root@allcours.es:/etc/nginx/sites-available`
-  `sudo ln -s /etc/nginx/sites-available/allcourses.conf /etc/nginx/sites-enabled/allcourses.conf`
-* PG setup - user
-  sudo su - postgres
-  psql
-  \dg
-  CREATE USER * WITH PASSWORD 'xxx';
-
-* PG setup - DB
-  CREATE DATABASE "*" WITH OWNER = *;
-  \l
-  \q
-  psql -h localhost -U <user> -W <dbname>
-
-* Initial deploy
-  `cap production deploy:check`
-  `cap production deploy`
-
-
-# TBD
-
-- Views and controllers...
-- custom devise form messages:
-  [https://github.com/plataformatec/devise/wiki/How-To:-Integrate-I18n-Flash-Messages-with-Devise-and-Bootstrap]
-- кастомазация лэйаута и связанных вьюх, включая сгенеренные девайзовские
-- Имя+Фамилия и невидимая Рекапча на девайзовскую регистрацию

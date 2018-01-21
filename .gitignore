@@ -27,3 +27,6 @@
 # Files uploaded by carrierwave and paperclip
 /public/system
 /public/uploads
+
+# Ignore encrypted secrets key file.
+config/secrets.yml.key
